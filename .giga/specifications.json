@@ -1,0 +1,22 @@
+[
+  {
+    "fileName": "main-overview.mdc",
+    "description": "Complete system overview documenting the drug testing knowledge system architecture, core components, and their interactions"
+  },
+  {
+    "fileName": "knowledge-base-model.mdc",
+    "description": "Detailed documentation of the AI knowledge base structure, prompt system design, and domain-specific drug testing knowledge organization"
+  },
+  {
+    "fileName": "svt-algorithms.mdc",
+    "description": "Comprehensive documentation of specimen validity testing algorithms, color analysis matrices, and result interpretation logic"
+  },
+  {
+    "fileName": "drug-database-schema.mdc",
+    "description": "Complete documentation of the drug reference database structure, categorization system, and metadata relationships"
+  },
+  {
+    "fileName": "data-flow.mdc",
+    "description": "Documentation of data flow between key components including specimen processing pipeline, validation checks, and result generation"
+  }
+]

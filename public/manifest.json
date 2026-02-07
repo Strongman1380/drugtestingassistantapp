@@ -1,0 +1,17 @@
+{
+  "name": "Field Testing Assistant",
+  "short_name": "Field Testing",
+  "description": "Drug testing education, AI assistant, and SVT color matching tool",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#1e40af",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

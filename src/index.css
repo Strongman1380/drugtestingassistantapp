@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    /* Prevent iOS bounce/overscroll */
+    overscroll-behavior: none;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900 antialiased;
+    -webkit-tap-highlight-color: transparent;
+    /* Prevent text size adjust on orientation change */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* Prevent iOS zoom on input focus (font-size must be >= 16px) */
+  input, select, textarea {
+    font-size: 16px;
+  }
+}
+
+@layer components {
+  .card {
+    @apply bg-white rounded-xl shadow-sm border border-gray-100 p-4;
+  }
+
+  .btn-primary {
+    @apply bg-blue-800 text-white px-4 py-2.5 rounded-lg font-medium hover:bg-blue-700 active:bg-blue-900 transition-colors;
+    min-height: 44px;
+  }
+
+  .btn-secondary {
+    @apply bg-gray-100 text-gray-700 px-4 py-2.5 rounded-lg font-medium hover:bg-gray-200 active:bg-gray-300 transition-colors;
+    min-height: 44px;
+  }
+
+  .input-field {
+    @apply w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    min-height: 44px;
+  }
+
+  .badge-normal {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800;
+  }
+
+  .badge-abnormal {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800;
+  }
+
+  .nav-item {
+    @apply flex flex-col items-center justify-center gap-0.5 py-2 px-1 text-[11px] transition-colors;
+    min-height: 56px;
+  }
+
+  .nav-item-active {
+    @apply text-blue-800 font-medium;
+  }
+
+  .nav-item-inactive {
+    @apply text-gray-500;
+  }
+}
+
+@layer utilities {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  .safe-top {
+    padding-top: env(safe-area-inset-top, 0px);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 2px;
+}
+
+/* Chat bubble animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.chat-bubble {
+  animation: fadeIn 0.2s ease-out;
+}
+
+/* Smooth momentum scrolling on iOS */
+.overflow-y-auto,
+.overflow-y-scroll {
+  -webkit-overflow-scrolling: touch;
+}
