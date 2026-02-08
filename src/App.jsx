@@ -7,6 +7,7 @@ import DrugDetail from './components/DrugDetail';
 import LearningCenter from './components/LearningCenter';
 import LearningModule from './components/LearningModule';
 import Checklist from './components/Checklist';
+import InstallPrompt from './components/InstallPrompt';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState('assistant');
@@ -48,6 +49,7 @@ export default function App() {
 
   return (
     <div className="min-h-[100dvh] bg-gray-50">
+      <InstallPrompt />
       <Navigation currentPage={currentPage} onNavigate={navigate} />
       <div className={`max-w-lg mx-auto ${isAssistant ? '' : 'pt-12'}`}>
         {renderPage()}
