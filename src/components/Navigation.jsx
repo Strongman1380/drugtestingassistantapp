@@ -40,7 +40,7 @@ export default function Navigation({ currentPage, onNavigate }) {
       <button
         onClick={() => setOpen(true)}
         className="fixed left-3 z-[60] p-2 bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors"
-        style={{ top: 'max(12px, env(safe-area-inset-top, 0px))' }}
+        style={{ top: 'calc(env(safe-area-inset-top, 0px) + 12px)' }}
         aria-label="Open menu"
       >
         <Menu size={22} className="text-gray-700" />

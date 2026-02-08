@@ -51,7 +51,10 @@ export default function App() {
     <div className="min-h-[100dvh] bg-gray-50">
       <InstallPrompt />
       <Navigation currentPage={currentPage} onNavigate={navigate} />
-      <div className={`max-w-lg mx-auto ${isAssistant ? '' : 'pt-12'}`}>
+      <div
+        className={`max-w-lg mx-auto ${isAssistant ? '' : ''}`}
+        style={isAssistant ? undefined : { paddingTop: 'calc(env(safe-area-inset-top, 0px) + 48px)' }}
+      >
         {renderPage()}
       </div>
     </div>
