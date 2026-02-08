@@ -12,17 +12,7 @@ export default defineConfig(({ mode }) => {
         registerType: 'autoUpdate',
         workbox: {
           globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
-          runtimeCaching: [
-            {
-              urlPattern: /^https:\/\/.*\/api\/(chat|vision)$/,
-              handler: 'NetworkFirst',
-              options: {
-                cacheName: 'api-cache',
-                networkTimeoutSeconds: 10,
-                expiration: { maxEntries: 32, maxAgeSeconds: 86400 },
-              },
-            },
-          ],
+          navigateFallbackDenylist: [/^\/api\//],
         },
         manifest: {
           name: 'Field Testing Assistant',
