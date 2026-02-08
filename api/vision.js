@@ -6,46 +6,52 @@ export const config = {
   },
 };
 
-const SVT_SYSTEM_PROMPT = `You are analyzing a photo of an SVT (Specimen Validity Test) strip on an iCUP drug testing cup. The strip has 4 color pads that indicate specimen validity. Analyze each pad and return the closest matching value.
+const SVT_SYSTEM_PROMPT = `You are analyzing a photo of an SVT (Specimen Validity Test) strip on an iCUP drug testing cup. The strip has 4 labeled color pads at the bottom of the cup. Each pad has its label printed directly below or next to it.
 
-The 4 parameters and their possible values are:
+CRITICAL: Read the labels on the cup to identify each pad. The labels are printed as: "OX" (Oxidants), "CRE" (Creatinine), "S.G." (Specific Gravity), and "pH". Match each pad by its label, NOT by position alone.
 
-1. OX/PCC (Oxidants) - pad ID: "oxpcc"
-   - "negative" = white/cream (no color change)
-   - "low" = light green
-   - "high" = dark blue/navy
+The 4 parameters and their possible values (from lightest to darkest):
 
-2. CRE (Creatinine) - pad ID: "creatinine"
-   - "0" = tan/beige
-   - "10" = light peach/salmon
-   - "20" = pink
-   - "50" = medium pink/mauve
-   - "100" = dark pink/magenta
-   - "200" = deep purple/maroon
+1. OX/PCC (Oxidants) - pad ID: "oxpcc" - labeled "OX" on the cup
+   - "negative" = white, cream, or pale yellow (no color change) — MOST COMMON
+   - "low" = light green, mint green
+   - "high" = dark blue, navy blue
 
-3. S.G. (Specific Gravity) - pad ID: "specificGravity"
-   - "1.000" = dark blue
-   - "1.003" = teal
-   - "1.005" = green-teal
-   - "1.010" = medium green
-   - "1.015" = yellow-green
-   - "1.020" = light green
-   - "1.025" = lime/chartreuse
-   - "1.030" = gold/dark yellow
-   - "1.035" = dark gold/amber
+2. CRE (Creatinine) - pad ID: "creatinine" - labeled "CRE" on the cup
+   COLOR SCALE FROM LIGHT TO DARK:
+   - "0" = tan, beige, very light brown (lightest)
+   - "10" = light peach, light salmon, pale pink
+   - "20" = pink, medium pink
+   - "50" = medium pink, mauve, rose
+   - "100" = dark pink, magenta, dark mauve, reddish-purple
+   - "200" = deep purple, dark purple, maroon, very dark (darkest)
+   NOTE: If the CRE pad is dark purple/maroon/very dark, it is "200" or "100", NOT "0" or "10".
 
-4. pH - pad ID: "ph"
-   - "2" = red
-   - "3" = light red/coral
-   - "4" = orange
-   - "5" = light orange/amber
-   - "6" = dark yellow/mustard
-   - "7" = olive/brown-yellow
-   - "8" = dark olive/brown
+3. S.G. (Specific Gravity) - pad ID: "specificGravity" - labeled "S.G." on the cup
+   COLOR SCALE FROM DARK BLUE TO GOLD:
+   - "1.000" = dark blue, navy
+   - "1.003" = teal, blue-green
+   - "1.005" = green-teal, blue-green
+   - "1.010" = medium green, green
+   - "1.015" = yellow-green, lime-green
+   - "1.020" = light green, pale green
+   - "1.025" = lime, chartreuse, yellow-green
+   - "1.030" = gold, dark yellow, olive-yellow
+   - "1.035" = dark gold, amber, brown-gold
+
+4. pH - pad ID: "ph" - labeled "pH" on the cup
+   COLOR SCALE FROM RED TO PURPLE:
+   - "2" = bright red
+   - "3" = light red, coral, salmon
+   - "4" = orange, red-orange
+   - "5" = light orange, amber, peach
+   - "6" = dark yellow, mustard, golden
+   - "7" = olive, brown-yellow, yellow-brown
+   - "8" = dark olive, brown, khaki
    - "9" = dark brown
-   - "10" = purple
+   - "10" = purple, violet
    - "11" = dark purple
-   - "12" = very dark purple
+   - "12" = very dark purple, near-black purple
 
 IMPORTANT: Return ONLY valid JSON with no other text. Use this exact format:
 {

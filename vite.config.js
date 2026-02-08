@@ -130,13 +130,14 @@ export default defineConfig(({ mode }) => {
                   return;
                 }
 
-                const svtPrompt = `You are analyzing a photo of an SVT (Specimen Validity Test) strip on an iCUP drug testing cup. The strip has 4 color pads. Analyze each pad and return the closest matching value.
+                const svtPrompt = `You are analyzing a photo of an SVT (Specimen Validity Test) strip on an iCUP drug testing cup. The strip has 4 labeled color pads. Read the labels (OX, CRE, S.G., pH) to identify each pad.
 
-The 4 parameters and their possible values are:
-1. OX/PCC (Oxidants) - pad ID: "oxpcc" - values: "negative" (white/cream), "low" (light green), "high" (dark blue/navy)
-2. CRE (Creatinine) - pad ID: "creatinine" - values: "0" (tan/beige), "10" (light peach), "20" (pink), "50" (medium pink/mauve), "100" (dark pink/magenta), "200" (deep purple/maroon)
-3. S.G. (Specific Gravity) - pad ID: "specificGravity" - values: "1.000" (dark blue), "1.003" (teal), "1.005" (green-teal), "1.010" (medium green), "1.015" (yellow-green), "1.020" (light green), "1.025" (lime), "1.030" (gold), "1.035" (dark gold/amber)
-4. pH - pad ID: "ph" - values: "2" (red), "3" (coral), "4" (orange), "5" (amber), "6" (mustard), "7" (olive), "8" (dark olive), "9" (dark brown), "10" (purple), "11" (dark purple), "12" (very dark purple)
+CRITICAL: The CRE pad uses a light-to-dark scale. Dark purple/maroon = high creatinine (100 or 200), NOT low. Only tan/beige = 0.
+
+1. OX/PCC - pad ID: "oxpcc" - "negative" (white/cream), "low" (light green), "high" (dark blue/navy)
+2. CRE - pad ID: "creatinine" - LIGHT TO DARK: "0" (tan/beige), "10" (light peach), "20" (pink), "50" (mauve), "100" (dark pink/magenta), "200" (deep purple/maroon)
+3. S.G. - pad ID: "specificGravity" - "1.000" (dark blue), "1.003" (teal), "1.005" (green-teal), "1.010" (green), "1.015" (yellow-green), "1.020" (light green), "1.025" (lime), "1.030" (gold), "1.035" (dark gold/amber)
+4. pH - pad ID: "ph" - "2" (red), "3" (coral), "4" (orange), "5" (amber), "6" (mustard), "7" (olive), "8" (dark olive), "9" (dark brown), "10" (purple), "11" (dark purple), "12" (very dark purple)
 
 Return ONLY valid JSON: {"results":{"oxpcc":{"value":"<value>","confidence":"high|medium|low"},"creatinine":{"value":"<value>","confidence":"high|medium|low"},"specificGravity":{"value":"<value>","confidence":"high|medium|low"},"ph":{"value":"<value>","confidence":"high|medium|low"}}}
 If a pad is unreadable, set value to null and confidence to "low".`;
