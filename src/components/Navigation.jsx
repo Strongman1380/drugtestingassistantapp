@@ -39,7 +39,8 @@ export default function Navigation({ currentPage, onNavigate }) {
       {/* Hamburger button */}
       <button
         onClick={() => setOpen(true)}
-        className="fixed top-3 left-3 z-50 p-2 bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+        className="fixed left-3 z-[60] p-2 bg-white/90 backdrop-blur-sm rounded-xl shadow-md border border-gray-200 hover:bg-gray-50 active:bg-gray-100 transition-colors"
+        style={{ top: 'max(12px, env(safe-area-inset-top, 0px))' }}
         aria-label="Open menu"
       >
         <Menu size={22} className="text-gray-700" />
@@ -47,13 +48,14 @@ export default function Navigation({ currentPage, onNavigate }) {
 
       {/* Backdrop */}
       <div
-        className={`fixed inset-0 bg-black/40 z-50 transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+        className={`fixed inset-0 bg-black/40 z-[60] transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
         onClick={() => setOpen(false)}
       />
 
       {/* Slide-out drawer */}
       <div
-        className={`fixed top-0 left-0 bottom-0 w-72 bg-white z-50 shadow-2xl transition-transform duration-300 ease-out flex flex-col ${open ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed top-0 left-0 bottom-0 w-72 bg-white z-[60] shadow-2xl transition-transform duration-300 ease-out flex flex-col ${open ? 'translate-x-0' : '-translate-x-full'}`}
+        style={{ paddingTop: 'env(safe-area-inset-top, 0px)' }}
       >
         {/* Drawer header */}
         <div className="flex items-center justify-between px-4 py-4 border-b border-gray-100">

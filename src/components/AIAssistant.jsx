@@ -61,7 +61,7 @@ export default function AIAssistant() {
   return (
     <div className="flex flex-col h-[100dvh]">
       {/* Header */}
-      <div className="bg-blue-800 text-white px-4 py-3">
+      <div className="bg-blue-800 text-white px-4 py-3" style={{ paddingTop: 'max(12px, env(safe-area-inset-top, 0px))' }}>
         <div className="flex items-center gap-2 pl-10">
           <Bot size={24} />
           <div>
