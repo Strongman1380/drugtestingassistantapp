@@ -1,35 +1,42 @@
 ---
-description: Specifications for drug testing reference database structure, categorization, and metadata relationships
+description: Documentation for drug reference database schema, categories, and metadata relationships
 ---
 
 
 # drug-database-schema
 
-## Core Database Structure
-Path: src/data/drugDatabase.js
+## Core Structure
+The drug reference database (`src/data/drugDatabase.js`) implements a comprehensive categorization system with the following key components:
 
-Comprehensive drug testing knowledge base containing:
-- 63 distinct drug compounds and metabolites
-- Testing-specific metadata per compound
-- Detection window mappings by specimen type
-- DEA scheduling classifications
+### Drug Entity Model
+- Detection window tracking for multiple specimen types:
+  - Urine testing windows
+  - Oral fluid testing windows
+- Metabolite mapping by specimen type
+- DEA scheduling classification
+- Alternate name mapping (common/street names)
+- Administration route metadata
+- Drug category cross-references
 
-## Metadata Relationships
-Each drug entry contains:
-- Primary drug identifier
-- Associated metabolites tracking
-- Detection time windows per specimen matrix
-- DEA schedule classification
-- Testing cutoff levels
+### Categorization System
+Cross-referenced drug categories include:
+- Opioids
+- Stimulants
+- Additional categories (implied but not explicitly listed)
 
-## Integration Points
-Path: src/data/aiKnowledgeBase.js
+### Metadata Relationships
+The database maintains relationships between:
+- Primary drug entries and their metabolites
+- Drugs and their DEA schedule classifications
+- Common names and formal nomenclature
+- Administration routes and detection windows
+- Drug categories and member substances
 
-Drug database interfaces with:
-- Testing interpretation guidelines
-- Specimen validity assessment rules
-- Detection window reference data
-- Cutoff level thresholds
+### Integration Points
+The database structure integrates with:
+- SVT analysis system for result interpretation
+- Drug testing knowledge base for clinical protocols
+- AI assistant knowledge base for procedure guidance
 
 Importance Score: 90/100
 

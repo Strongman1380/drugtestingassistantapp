@@ -1,58 +1,56 @@
 ---
-description: Specification for specimen validity testing algorithms, color analysis matrices, and result interpretation logic
+description: Technical specification for specimen validity testing algorithms and color analysis matrices
 ---
 
 
 # svt-algorithms
 
-## Core SVT Analysis Components
+## Color Analysis Matrix
+Located in `src/data/svtColorData.js`, implements comprehensive color interpretation for specimen validity testing:
 
-### Color Analysis Engine
-Path: src/components/SVTColorChecker.jsx
-- Multi-parameter SVT strip analysis for:
-  - Oxidants/PCC
-  - Creatinine
-  - Specific Gravity
-  - pH measurements
-- Vision AI integration for automated color detection
-- Medical result interpretation matrix
+### Core Parameters
+1. OX/PCC (Oxidants/PCC)
+- Detects adulterants through color mapping
+- Maps specific color ranges to adulteration indicators
 
-### Color Reference System
-Path: src/data/svtColorData.js
-- Parameter-specific color mapping tables
-- Standardized interpretation rules per parameter
-- Clinical threshold definitions for:
-  - Normal ranges
-  - Abnormal indicators
-  - Invalid specimen markers
+2. Creatinine Analysis
+- Valid range: 20-400 mg/dL
+- Color matrix maps to concentration levels
+- Interprets specimen dilution status
 
-### Vision Analysis Algorithm
-Path: api/vision.js
-- SVT strip color detection algorithms
-- Multi-parameter confidence scoring system
-- Medical-grade result validation rules
+3. Specific Gravity
+- Range validation: 1.003-1.030
+- Density analysis through color correlation
+- Maps color intensities to gravity values
 
-## Parameter Analysis Matrix
+4. pH Analysis
+- Valid range: 4.0-9.0
+- Color mapping for pH level determination
+- Flags specimens outside acceptable ranges
 
-### Oxidants/PCC
-- Detection thresholds for specimen tampering
-- Color gradient interpretation for oxidant presence
-- PCC concentration mapping
+## Vision Analysis System
+Located in `api/vision.js`, provides automated SVT strip interpretation:
 
-### Creatinine
-- Concentration level detection
-- Normal/abnormal range determination
-- Dilution detection algorithms
+### Key Components
+1. Color Interpretation Algorithm
+- Processes SVT strip photographs
+- Maps detected colors to clinical parameters
+- Validates against established ranges
 
-### Specific Gravity
-- Density measurement interpretation
-- Specimen concentration validation
-- Dilution analysis matrix
+2. Confidence Scoring
+- Evaluates color matching accuracy
+- Determines result reliability
+- Flags uncertain interpretations
 
-### pH Analysis
-- pH level detection ranges
-- Adulteration indicator analysis
-- Specimen validity determination rules
+### Result Validation
+- Structured response format
+- Clinical validation rules
+- Parameter-specific acceptance criteria
+
+### Integration Points
+- Links with color matrix data
+- Provides standardized interpretation outputs
+- Supports clinical decision workflows
 
 Importance Score: 95/100
 

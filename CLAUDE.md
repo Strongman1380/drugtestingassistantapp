@@ -13,56 +13,59 @@
 - Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
 
 
-Drug Testing Analysis System integrating specialized color analysis, AI interpretation, and comprehensive drug reference data.
+The system implements specialized clinical drug testing logic across five core components:
 
-## Core Systems
+## Specimen Validity Testing (SVT) System
+Primary component handling urine specimen analysis through color interpretation matrices. Processes four key clinical parameters:
+- Oxidants/PCC detection for adulterant screening
+- Creatinine concentration validation (20-400 mg/dL)
+- Specific Gravity analysis (1.003-1.030)
+- pH range validation (4.0-9.0)
 
-### Specimen Validity Testing (SVT)
-- Advanced color analysis system for medical specimen validation
-- Multi-parameter testing (OX/PCC, Creatinine, Specific Gravity, pH)
-- Vision AI integration for automated result interpretation
-- Located in `src/components/SVTColorChecker.jsx`
+File: src/data/svtColorData.js
 Importance: 95/100
 
-### Drug Reference System
-- Structured database of 63 drugs with testing metadata
-- Detection window tracking across specimen types
-- DEA scheduling and metabolite information
-- Located in `src/data/drugDatabase.js`
+## Drug Testing Reference System
+Centralized knowledge base managing:
+- Detection window tracking for multiple specimen types
+- Metabolite profiles and specimen-specific markers
+- DEA scheduling classifications
+- Drug nomenclature mapping
+- Administration route data
+- Category-based drug classifications
+
+File: src/data/drugDatabase.js
 Importance: 90/100
 
-### AI-Powered Testing Assistant
-- Domain-specific knowledge base for test interpretation
-- Contextual query handling for drug testing scenarios
-- Located in `src/components/AIAssistant.jsx`
+## SVT Strip Analysis Engine
+AI-powered vision system for processing SVT strip photographs with:
+- Parameter-specific color analysis
+- Clinical validation rules
+- Confidence scoring mechanism
+
+File: api/vision.js
 Importance: 85/100
 
-## Supporting Components
+## Clinical Procedure Knowledge Base
+Structured system containing:
+- Specimen collection protocols
+- Result interpretation guidelines
+- Clinical cutoff thresholds
+- Chain of custody procedures
+- THC/Creatinine calculations
 
-### SVT Color Reference
-- Parameter-specific color mapping for validity testing
-- Clinical interpretation thresholds
-- Located in `src/data/svtColorData.js`
-Importance: 85/100
-
-### Collection Protocols
-- Standardized specimen collection procedures
-- Chain of custody requirements
-- Located in `src/data/checklistData.js`
+File: src/data/aiKnowledgeBase.js
 Importance: 80/100
 
-### AI Knowledge Integration
-- Testing domain expertise database
-- Validity assessment rules
-- Cutoff level definitions
-- Located in `src/data/aiKnowledgeBase.js`
-Importance: 85/100
+## Collection Management System
+Workflow engine managing:
+- Specimen collection procedures
+- Documentation requirements
+- Clinical shipping protocols
+- Test validation rules
 
-## Vision Analysis
-- Custom SVT strip analysis algorithms
-- Confidence scoring for result validation
-- Located in `api/vision.js`
-Importance: 90/100
+File: src/data/checklistData.js
+Importance: 75/100
 
 $END$
 

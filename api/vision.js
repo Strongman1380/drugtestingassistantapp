@@ -19,13 +19,13 @@ The 4 parameters and their possible values (from lightest to darkest):
 
 2. CRE (Creatinine) - pad ID: "creatinine" - labeled "CRE" on the cup
    COLOR SCALE FROM LIGHT TO DARK:
-   - "0" = tan, beige, very light brown (lightest)
-   - "10" = light peach, light salmon, pale pink
-   - "20" = pink, medium pink
-   - "50" = medium pink, mauve, rose
+   - "0" = tan, beige, very light brown, no color change at all (lightest — the ONLY colors with no pink/purple)
+   - "10" = light peach, light salmon, faint pinkish tint (barely any color — still very pale, NOT distinctly pink)
+   - "20" = noticeable pink, medium pink, clearly pink (first value with a definite pink/purple hue)
+   - "50" = deeper pink, mauve, rose, pink-purple
    - "100" = dark pink, magenta, dark mauve, reddish-purple
    - "200" = deep purple, dark purple, maroon, very dark (darkest)
-   NOTE: If the CRE pad is dark purple/maroon/very dark, it is "200" or "100", NOT "0" or "10".
+   CRITICAL CRE RULE: The clinical boundary is between "10" and "20". If the pad has ANY distinct pink or purple hue, it is "20" or higher (normal creatinine). Only report "0" if the pad is tan/beige with zero pink. Only report "10" if the pad is very faintly tinted with barely perceptible color. When in doubt between "10" and "20", choose "20".
 
 3. S.G. (Specific Gravity) - pad ID: "specificGravity" - labeled "S.G." on the cup
    COLOR SCALE FROM DARK BLUE TO GOLD:

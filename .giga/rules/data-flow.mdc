@@ -1,5 +1,5 @@
 ---
-description: Documents core data flows for drug testing analysis, SVT processing, and result generation
+description: Documents data processing pipelines and information flow for specimen testing and validation systems
 ---
 
 
@@ -7,50 +7,42 @@ description: Documents core data flows for drug testing analysis, SVT processing
 
 Core Data Processing Pipeline:
 
-1. SVT Specimen Processing Flow
-- Input: Raw specimen validity test strip data
-- SVTColorChecker.jsx analyzes color parameters
-- Vision AI integration performs automated detection
-- Validates against svtColorData.js reference values
-- Outputs: Multi-parameter validity assessment
-Importance Score: 95/100
+1. Specimen Collection Input
+- Collection Checklist System (src/data/checklistData.js) validates initial specimen data
+- Enforces form completion and test code validation rules
+- Forwards validated specimen data to SVT analysis
 
-2. Drug Testing Knowledge Flow
-- Drug reference database provides testing metadata
-- AI Assistant consumes knowledge base for interpretations
-- Validates against detection windows and cutoff levels
-- Generates contextual testing recommendations
-Importance Score: 90/100
+2. SVT Analysis Processing
+- SVT system (src/data/svtColorData.js) processes specimen validity parameters:
+  * Color data interpretation for OX/PCC, Creatinine, Specific Gravity, pH
+  * Maps color values to clinical interpretations
+  * Generates validity testing results with required actions
 
-3. Result Generation Pipeline
-- SVT color analysis results feed into validation system
-- Combines specimen validity data with drug test results
-- Applies medical-grade interpretation rules
-- Produces final clinical assessment
-Importance Score: 85/100
+3. Vision Analysis Integration
+- AI Vision system (api/vision.js) processes SVT strip photos
+- Interprets color data for 4 test parameters
+- Generates confidence scores
+- Outputs structured validation results
 
-Key Data Integration Points:
+4. Drug Testing Knowledge Flow
+- Drug database (src/data/drugDatabase.js) provides reference data:
+  * Detection window information
+  * Metabolite tracking
+  * Cross-referenced drug categories
+- Integrates with test results for interpretation
 
-1. Vision Analysis -> SVT Processing
-Path: api/vision.js -> src/components/SVTColorChecker.jsx
-- Color detection results
-- Confidence scores
-- Parameter measurements
-Importance Score: 90/100
+5. Result Generation Pipeline
+- Combines SVT analysis results
+- Incorporates drug testing reference data
+- Applies clinical validation rules from AI knowledge base
+- Produces final interpreted results with required actions
 
-2. Knowledge Base -> AI Assistant
-Path: src/data/aiKnowledgeBase.js -> src/components/AIAssistant.jsx
-- Testing guidelines
-- Interpretation rules
-- Clinical recommendations
-Importance Score: 85/100
-
-3. Collection Protocol -> Result Validation
-Path: src/data/checklistData.js -> src/components/SVTColorChecker.jsx
-- Specimen handling requirements
-- Validation criteria
-- Documentation compliance
-Importance Score: 80/100
+Critical Data Validations:
+- Specimen collection protocol verification
+- Chain of custody requirement checks
+- Clinical cutoff level validation
+- THC/Creatinine ratio calculations
+- Adulterant detection verification
 
 $END$
 
