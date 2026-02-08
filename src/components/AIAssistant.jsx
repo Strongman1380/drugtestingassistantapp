@@ -59,10 +59,10 @@ export default function AIAssistant() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100dvh-4.5rem-env(safe-area-inset-bottom,0px))]">
+    <div className="flex flex-col h-[100dvh]">
       {/* Header */}
       <div className="bg-blue-800 text-white px-4 py-3">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 pl-10">
           <Bot size={24} />
           <div>
             <h1 className="font-bold text-lg">Drug Testing AI Assistant</h1>

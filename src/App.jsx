@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Navigation from './components/Navigation';
-import Home from './components/Home';
 import AIAssistant from './components/AIAssistant';
 import SVTColorChecker from './components/SVTColorChecker';
 import DrugGuide from './components/DrugGuide';
@@ -10,7 +9,7 @@ import LearningModule from './components/LearningModule';
 import Checklist from './components/Checklist';
 
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
+  const [currentPage, setCurrentPage] = useState('assistant');
   const [selectedDrug, setSelectedDrug] = useState(null);
   const [selectedModule, setSelectedModule] = useState(null);
 
@@ -26,8 +25,6 @@ export default function App() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case 'home':
-        return <Home onNavigate={navigate} />;
       case 'assistant':
         return <AIAssistant />;
       case 'svt':
@@ -43,16 +40,18 @@ export default function App() {
       case 'checklist':
         return <Checklist />;
       default:
-        return <Home onNavigate={navigate} />;
+        return <AIAssistant />;
     }
   };
 
+  const isAssistant = currentPage === 'assistant';
+
   return (
-    <div className="min-h-[100dvh] bg-gray-50 pb-[calc(4.5rem+env(safe-area-inset-bottom,0px))]">
-      <div className="max-w-lg mx-auto">
+    <div className="min-h-[100dvh] bg-gray-50">
+      <Navigation currentPage={currentPage} onNavigate={navigate} />
+      <div className={`max-w-lg mx-auto ${isAssistant ? '' : 'pt-12'}`}>
         {renderPage()}
       </div>
-      <Navigation currentPage={currentPage} onNavigate={navigate} />
     </div>
   );
 }
